@@ -86,6 +86,16 @@ The fourth command creates `~/.dsh/profiles/superagent` from the DeepSeek Harnes
 
 Run the profile-creation command only for a new installation. If the profile already exists, that command replaces it and deletes its `cordis.patch.yml`, including machine configuration. Do not use it for upgrades.
 
+The bundle is also published to npm, so a machine without a checkout can skip the clone and the build:
+
+```sh
+npm install -g @deepseek-ai/dsh@0.2.1-rc.3
+dsh superagent --from-default-profile web --dump-config > /dev/null
+dsh plugin --profile superagent add @tianyi0505/dsh-superagent@latest
+```
+
+Upgrade an npm installation with the same `add` command; it resolves the newest published version.
+
 ## Machine configuration
 
 Copy [examples/profile.cordis.patch.yml](../examples/profile.cordis.patch.yml) to `~/.dsh/profiles/superagent/cordis.patch.yml`, replacing that file, and replace every `<placeholder>`. For Feishu, also enable the `dsh-superagent-feishu` entry there. The `webserver` entry sets the panel's port.

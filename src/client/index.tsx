@@ -20,6 +20,7 @@ type ClientContext = Context & { sessions: ISessions }
 const NS = 'dshSuperagent'
 const PANEL_ID = 'dsh-superagent' as MainPanelId
 const ENTRY = 'dsh-superagent'
+const PACKAGE = '@tianyi0505/dsh-superagent'
 
 function HammerIcon({ size }: SidebarPanelIconOwnerProps) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -53,6 +54,6 @@ export function apply(ctx: ClientContext): void {
   ctx.slots.inject('main', () => ctx.slots.register({ name: 'main', key: PANEL_ID, locale: NS, inject: () => ({}) },
     (props: { t: T }) => <Mounted ctx={ctx} t={props.t} />))
   ctx.slots.inject('sidebar.panellist', () => ctx.slots.register({ name: 'sidebar.panellist', id: PANEL_ID, order: 10, label: () => t('panel'), locale: NS }, HammerIcon))
-  ctx.slots.inject('plugins.row.config', () => ctx.slots.register({ name: 'plugins.row.config', key: `${ENTRY}#${ENTRY}`, locale: NS },
+  ctx.slots.inject('plugins.row.config', () => ctx.slots.register({ name: 'plugins.row.config', key: `${PACKAGE}#${ENTRY}`, locale: NS },
     (props: PluginConfigViewProps & { t: T }) => <PluginConfig t={props.t} view={props.view} form={props.form} />))
 }
